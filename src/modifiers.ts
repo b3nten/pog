@@ -1,4 +1,5 @@
-export const modifiers = new Set([
+export const modifiers = new Set(
+  [
     "xs",
     "sm",
     "md",
@@ -54,4 +55,5 @@ export const modifiers = new Set([
     "rtl",
     "ltr",
     "open",
-] as const)
+  ] as const,
+);

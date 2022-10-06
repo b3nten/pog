@@ -1,22 +1,26 @@
-type TParseObject<T extends string> = {
-  [key in T]?: string | TParseObject<T> | Array<string | TParseObject<T>>;
-} & {
-  [key: string]: string | TParseObject<T> | Array<string | TParseObject<T>>;
-};
+type TParseObject<T extends string> =
+  & {
+    [key in T]?: string | TParseObject<T> | Array<string | TParseObject<T>>;
+  }
+  & {
+    [key: string]: string | TParseObject<T> | Array<string | TParseObject<T>>;
+  };
 
-type TParsePropsObject<T extends string> = {
-  [key in T]?:
-    | string
-    | TParseObject<T>
-    | Array<string | TParseObject<T>>
-    | boolean;
-} & {
-  [key: string]:
-    | string
-    | TParseObject<T>
-    | Array<string | TParseObject<T>>
-    | boolean;
-};
+type TParsePropsObject<T extends string> =
+  & {
+    [key in T]?:
+      | string
+      | TParseObject<T>
+      | Array<string | TParseObject<T>>
+      | boolean;
+  }
+  & {
+    [key: string]:
+      | string
+      | TParseObject<T>
+      | Array<string | TParseObject<T>>
+      | boolean;
+  };
 
 export class Pog<M extends string, A extends string> {
   readonly modifiers: Set<M>;
@@ -38,7 +42,7 @@ export class Pog<M extends string, A extends string> {
       (modifier ? ":" : "-") +
       this.formatString(value).replace(
         /\s+/g,
-        " " + key + (modifier ? ":" : "-")
+        " " + key + (modifier ? ":" : "-"),
       )
     );
   }
@@ -47,7 +51,7 @@ export class Pog<M extends string, A extends string> {
   protected parseArray(
     key: string,
     arr: Array<string | Record<string, unknown>>,
-    modifier = true
+    modifier = true,
   ) {
     const acc: string[] = [];
     for (const element of arr) {
@@ -57,7 +61,7 @@ export class Pog<M extends string, A extends string> {
         acc.push(
           key +
             (modifier ? ":" : "-") +
-            this.parseObject(element as TParseObject<M>)
+            this.parseObject(element as TParseObject<M>),
         );
       }
     }
@@ -79,7 +83,7 @@ export class Pog<M extends string, A extends string> {
       }
       if (typeof value === "object") {
         acc.push(
-          key + (modifier ? ":" : "-") + this.parseObject(value as typeof obj)
+          key + (modifier ? ":" : "-") + this.parseObject(value as typeof obj),
         );
         continue;
       }
