@@ -1,0 +1,37 @@
+{
+  "module": "./esm/mod.js",
+  "main": "./script/mod.js",
+  "types": "./types/mod.d.ts",
+  "name": "pog",
+  "description": "Pog is a small utility library for writing better tailwind/twind classes. ",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/B3nten/pog.git"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./esm/mod.js",
+        "types": "./types/mod.d.ts"
+      },
+      "require": {
+        "default": "./script/mod.js",
+        "types": "./types/mod.d.ts"
+      }
+    }
+  },
+  "scripts": {
+    "test": "node test_runner.js"
+  },
+  "dependencies": {
+    "@babel/generator": "7.19.3",
+    "@babel/parser": "7.19.3",
+    "@babel/traverse": "7.19.3",
+    "@babel/types": "7.19.3"
+  },
+  "devDependencies": {
+    "@types/node": "16.11.37",
+    "chalk": "4.1.2"
+  }
+}
